@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eerste Knop Ontgrendeld</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #c9ffbf 0%, #ffafbd 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      padding: 40px 30px;
+      text-align: center;
+    }
+    h1 {
+      color: #2d6a4f;
+      margin-bottom: 16px;
+    }
+    .unlocked {
+      font-size: 48px;
+      color: #ffd60a;
+      margin-bottom: 24px;
+    }
+    button {
+      padding: 10px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      background-color: #008cff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:active {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="unlocked">🔓</div>
+    <h1>Je hebt de eerste knop ontgrendeld!</h1>
+    <p>Dit apparaat heeft nu knop 1 van 6 ontgrendeld. Verifieer alleen nog even door op de knop hier onder te drukken, omdat de server dan weet dat je echt de knop hebt gedrukt.</p>
+    <button onclick="stuurSignaal()">Verifieren</button>
+    <p id="status"></p>
+  </div>
+  <script>
+    function stuurSignaal() {
+      // Hier kun je een fetch naar een backend/API doen als je dat wilt
+      // Bijvoorbeeld: fetch('/api/knop/1/ontgrendeld', { method: 'POST' })
+      document.getElementById('status').textContent = 'Signaal verstuurd: Knop 1 is ontgrendeld!';
+      console.log('Signaal: Apparatenstatus - knop 1 van 6 ontgrendeld');
+    }
+  </script>
+</body>
+</html>
