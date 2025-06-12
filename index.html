@@ -58,7 +58,8 @@
 function stuurSignaal() {
   fetch('signaal.php', { method: 'POST' })
     .then(r => r.json())
-    .then(d => document.getElementById('status').textContent = 'Succesvol geverifieerd!');
+    .then(d => document.getElementById('status').textContent = 'Succesvol geverifieerd!')
+    .catch(e => document.getElementById('status').textContent = 'Er is iets misgegaan.');
 }
 </script>
 </body>
