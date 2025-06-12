@@ -54,13 +54,12 @@
     <button onclick="stuurSignaal()">Verifieren</button>
     <p id="status"></p>
   </div>
-  <script>
-    function stuurSignaal() {
-      // Hier kun je een fetch naar een backend/API doen als je dat wilt
-      // Bijvoorbeeld: fetch('/api/knop/1/ontgrendeld', { method: 'POST' })
-      document.getElementById('status').textContent = 'Signaal verstuurd: Knop 1 is ontgrendeld!';
-      console.log('Signaal: Apparatenstatus - knop 1 van 6 ontgrendeld');
-    }
-  </script>
+      <script>
+function stuurSignaal() {
+  fetch('signaal.php', { method: 'POST' })
+    .then(r => r.json())
+    .then(d => document.getElementById('status').textContent = 'Succesvol geverifieerd!');
+}
+</script>
 </body>
 </html>
