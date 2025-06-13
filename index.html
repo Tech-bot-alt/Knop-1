@@ -48,19 +48,29 @@
 </head>
 <body>
   <div class="container">
-    <div class="unlocked">🔓</div>
+    <div class="unlocked" aria-label="Ontgrendeld">🔓</div>
     <h1>Je hebt de eerste knop ontgrendeld!</h1>
-    <p>Dit apparaat heeft nu knop 1 van 6 ontgrendeld. Verifieer alleen nog even door op de knop hier onder te drukken, omdat de server dan weet dat je echt de knop hebt gedrukt.</p>
-    <button onclick="stuurSignaal()">Verifieren</button>
-    <p id="status"></p>
+    <p>Dit apparaat heeft nu knop 1 van 6 ontgrendeld. Verifieer alleen nog even door op de knop hieronder te drukken, zodat de server weet dat je écht de knop hebt ingedrukt.</p>
+    <button type="button" onclick="stuurSignaal()">Verifieren</button>
+    <p id="status" aria-live="polite"></p>
   </div>
-      <script>
-function stuurSignaal() {
-  fetch('signaal.php', { method: 'POST' })
-    .then(r => r.json())
-    .then(d => document.getElementById('status').textContent = 'Succesvol geverifieerd!')
-    .catch(e => document.getElementById('status').textContent = 'Er is iets misgegaan.');
-}
-</script>
+  <noscript>
+    <p style="color:red;text-align:center;">Voor deze pagina is JavaScript vereist.</p>
+  </noscript>
+  <script>
+    function stuurSignaal() {
+      fetch('signaal.php', { method: 'POST' })
+        .then(response => {
+          if (!response.ok) throw new Error('Netwerkfout');
+          return response.json();
+        })
+        .then(data => {
+          document.getElementById('status').textContent = 'Succesvol geverifieerd!';
+        })
+        .catch(error => {
+          document.getElementById('status').textContent = 'Er is iets misgegaan.';
+        });
+    }
+  </script>
 </body>
 </html>
